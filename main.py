@@ -1,11 +1,15 @@
-from datetime import date , time , datetime
+import random
+import time
 
-# calling the today
-# function of date class
-today = date.today()
-now = datetime.now()
-print("Today's date is", today)
-print("\nCurrent Date and time is ", now)
 
-# Printing date's components
-print("\nDate components", today.year, today.month, today.day)
+def getRandomDate(startDate, endDate):
+    print("Printing random date between", startDate, "and", endDate)
+    randGenerator = random.random()
+    dateFormat = "%m/%d/%Y"
+    starttime = time.mktime(time.strptime(startDate, dateFormat))
+    endtime = time.mktime(time.strptime(endDate, dateFormat))
+    randomTime = starttime + randGenerator * (endtime - starttime)
+    randomDate = time.strftime(dateFormat, time.localtime(randomTime))
+    return randomDate
+
+print("Random Date = ", getRandomDate("1/1/2020", "12/12/2024"))
